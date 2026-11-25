@@ -7,11 +7,13 @@ pub mod presets;
 use engine::Engine;
 use nice_plug::prelude::*;
 use params::ShriekerParams;
+use serde_json::json;
+use std::sync::atomic::{AtomicU32, Ordering};
 use std::sync::Arc;
 
 static PAGE: editor::Page = editor::Page {
     title: "Shrieker",
-    size: (600, 400),
+    size: (640, 460),
     html: include_str!("../../ui/index.html"),
     version: match option_env!("PLUGIN_VERSION") {
         Some(version) => version,
@@ -24,11 +26,19 @@ static PAGE: editor::Page = editor::Page {
 pub struct Shrieker {
     params: Arc<ShriekerParams>,
     engine: Engine,
+    /// The loudest the feedback got since the editor last looked, as f32
+    /// bits. Positive floats' bits sort like the floats, so `fetch_max`
+    /// keeps the peak.
+    peak: Arc<AtomicU32>,
 }
 
 impl Default for Shrieker {
     fn default() -> Self {
-        Self { params: Arc::new(ShriekerParams::default()), engine: Engine::new(48_000.0) }
+        Self {
+            params: Arc::new(ShriekerParams::default()),
+            engine: Engine::new(48_000.0),
+            peak: Arc::new(AtomicU32::new(0)),
+        }
     }
 }
 
@@ -54,7 +64,14 @@ impl Plugin for Shrieker {
     }
 
     fn editor(&mut self, _executor: AsyncExecutor<Self>) -> Option<Self::Editor> {
-        Some(editor::WebEditor::new(&PAGE, self.params.clone()).with_presets(presets::json()))
+        let peak = self.peak.clone();
+        let sent = AtomicU32::new(u32::MAX);
+        let feed: editor::Feed = Arc::new(move || {
+            let level = (f32::from_bits(peak.swap(0, Ordering::Relaxed)) * 100.0).round() as u32;
+            (sent.swap(level, Ordering::Relaxed) != level)
+                .then(|| json!({ "type": "meter", "level": level as f32 / 100.0 }))
+        });
+        Some(editor::WebEditor::new(&PAGE, self.params.clone()).with_presets(presets::json()).with_feed(feed))
     }
 
     fn activate(
@@ -85,6 +102,7 @@ impl Plugin for Shrieker {
         if let [left, right] = buffer.as_slice() {
             self.engine.process(left, right);
         }
+        self.peak.fetch_max((self.engine.feedback_peak() as f32).to_bits(), Ordering::Relaxed);
         ProcessStatus::Normal
     }
 }

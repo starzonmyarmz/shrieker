@@ -326,6 +326,7 @@ pub struct Engine {
     tone_svf: Svf,
     dc_x: f64,
     dc_y: f64,
+    peak: f64,
     rng: Rng,
     c: Coefs,
 }
@@ -400,6 +401,7 @@ impl Engine {
             tone_svf: Svf::default(),
             dc_x: 0.0,
             dc_y: 0.0,
+            peak: 0.0,
             rng: Rng(Rng::SEED),
             c: Coefs::new(sr),
         };
@@ -409,6 +411,12 @@ impl Engine {
 
     pub fn sample_rate(&self) -> f32 {
         self.sample_rate
+    }
+
+    /// The loudest the feedback got in the last `process` call, as it was
+    /// added to the dry signal.
+    pub fn feedback_peak(&self) -> f64 {
+        self.peak
     }
 
     /// Jumps to the current settings instead of gliding to them, and
@@ -442,6 +450,7 @@ impl Engine {
         self.tone_svf = Svf::default();
         self.dc_x = 0.0;
         self.dc_y = 0.0;
+        self.peak = 0.0;
         self.rng = Rng(Rng::SEED);
     }
 
@@ -471,6 +480,7 @@ impl Engine {
         let open_gain = lerp(1.6, 4.0, s.mess);
         let sputter_rate = ((s.mess - 0.5) * 2.0).max(0.0) * 12.0 / sr;
         let refractory = (0.08 * sr) as usize;
+        self.peak = 0.0;
 
         for (l, r) in left.iter_mut().zip(right.iter_mut()) {
             self.drive += (s.drive - self.drive) * self.glide;
@@ -596,6 +606,7 @@ impl Engine {
 
             *l = (*l as f64 + fb) as f32;
             *r = (*r as f64 + fb) as f32;
+            self.peak = self.peak.max(fb.abs());
         }
     }
 }

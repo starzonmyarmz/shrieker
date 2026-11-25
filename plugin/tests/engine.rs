@@ -107,6 +107,28 @@ fn muting_the_strings_stops_the_feedback() {
 }
 
 #[test]
+fn feedback_peak_follows_the_feedback() {
+    let mut engine = Engine::new(SR);
+    let mut silence = vec![0.0; 512];
+    engine.process(&mut silence.clone(), &mut silence);
+    assert_eq!(engine.feedback_peak(), 0.0);
+
+    let mut input = support::tone(110.0, 2.0, SR);
+    input.truncate(input.len() / 512 * 512);
+    let mut left = input.clone();
+    let mut right = input.clone();
+    let mut peak = 0.0;
+    for (l, r) in left.chunks_mut(512).zip(right.chunks_mut(512)) {
+        engine.process(l, r);
+        peak = engine.feedback_peak();
+    }
+    let tail = wet(&input[input.len() - 512..], &left[left.len() - 512..]);
+    let loudest = tail.iter().fold(0.0f64, |m, x| m.max(x.abs()));
+    assert!(peak > 0.05);
+    assert!((peak - loudest).abs() < 1e-6, "peak {peak}, loudest {loudest}");
+}
+
+#[test]
 fn block_size_does_not_change_the_sound() {
     let input = support::tone(110.0, 0.5, SR);
     assert_eq!(render_blocks(&input, Settings::default(), 64), render_blocks(&input, Settings::default(), 512));

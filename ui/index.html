@@ -4,13 +4,32 @@
 <meta charset="utf-8">
 <title>Shrieker</title>
 <style>
+  @font-face {
+    font-family: "League Gothic";
+    src: url(data:font/woff2;base64,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) format("woff2");
+  }
+
   :root {
-    --bg: #1b1a19;
-    --panel: #262523;
-    --ink: #f2efe8;
-    --muted: #8f8b83;
-    --accent: #ff7a3d;
-    --track: #3a3835;
+    --enamel: #f2c200;
+    --enamel-hi: #ffd83a;
+    --enamel-lo: #d9a900;
+    --ink: #161412;
+    --cream: #f4eee0;
+    --cream-lo: #e2d8bf;
+    --red: #c8261e;
+    --bakelite: #1c1a18;
+    --bakelite-hi: #34302c;
+    --brass: #b8893a;
+    --brass-hi: #f0d28a;
+    --arc: #bfe6ff;
+    --lamp: #ff3b1f;
+    --chrome: #c9ced4;
+    --chrome-lo: #7d848c;
+    --stripe: 14px;
+    --gap: 14px;
+    --knob: 52px;
+    --cell: 84px;
+    --label: 15px;
   }
 
   * { box-sizing: border-box; }
@@ -25,13 +44,9 @@
   }
 
   body {
-    display: grid;
-    place-items: center;
-    align-content: center;
-    gap: 16px;
-    background: var(--bg);
+    background: var(--ink);
     color: var(--ink);
-    font-family: -apple-system, "Segoe UI", sans-serif;
+    font-family: "League Gothic", sans-serif;
   }
 
   button {
@@ -43,150 +58,399 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 4px;
+    outline: 2px solid var(--red);
+    outline-offset: 3px;
   }
 
-  main {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 28px;
-    padding: 28px;
-    border-radius: 16px;
-    background: var(--panel);
-  }
-
-  .presets {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 6px;
-    max-inline-size: 560px;
-
-    & button {
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: var(--panel);
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 600;
-      cursor: pointer;
-
-      &:hover { color: var(--ink); }
-
-      &[aria-pressed="true"] {
-        background: var(--accent);
-        color: var(--bg);
-      }
-    }
-  }
-
-  .version {
-    position: absolute;
-    inset-block-end: 10px;
-    inset-inline-end: 12px;
-    margin: 0;
-    font-size: 10px;
-    letter-spacing: 0.04em;
-    color: var(--muted);
-  }
-
-  .control {
+  .pedal {
+    inline-size: 640px;
+    block-size: 460px;
+    border: var(--stripe) solid transparent;
+    border-radius: 22px;
+    background:
+      radial-gradient(circle at 1px 1px, #fff2 1px, transparent 1.5px) padding-box,
+      radial-gradient(120% 90% at 30% 15%, var(--enamel-hi), var(--enamel) 55%, var(--enamel-lo)) padding-box,
+      repeating-linear-gradient(-45deg, var(--ink) 0 var(--stripe), var(--enamel) var(--stripe) calc(var(--stripe) * 2)) border-box;
+    background-size: 4px 4px, auto, auto;
+    box-shadow: inset 0 2px 0 #fff6, inset 0 -3px 8px #0005;
     display: grid;
-    justify-items: center;
-    gap: 8px;
-    inline-size: 72px;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr;
+    gap: var(--gap);
+    padding: 16px 18px;
   }
 
-  .name {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
-  .text {
-    font-size: 12px;
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-  }
-
-  .knob {
-    --arc: calc(var(--turn) * 270deg);
-    position: relative;
-    inline-size: 56px;
-    aspect-ratio: 1;
+  .badge {
+    display: grid;
+    place-items: center;
+    inline-size: 250px;
+    block-size: 84px;
+    margin-inline-start: 6px;
     border-radius: 50%;
-    touch-action: none;
-    cursor: ns-resize;
-    background: conic-gradient(from -135deg, var(--accent) 0 var(--arc), var(--track) var(--arc) 270deg, transparent 270deg);
-    mask: radial-gradient(circle, transparent 55%, #000 56%);
-  }
+    background: radial-gradient(80% 70% at 40% 30%, #2c2925, var(--ink));
+    box-shadow: 0 0 0 3px var(--enamel), 0 0 0 5px var(--ink), 0 4px 8px #0006;
 
-  .dial {
-    position: relative;
-    inline-size: 56px;
-    aspect-ratio: 1;
-
-    & .pointer {
-      position: absolute;
-      inset: 0;
-      rotate: calc(var(--turn) * 270deg - 135deg);
-      pointer-events: none;
-
-      &::before {
-        content: "";
-        position: absolute;
-        inset-inline-start: calc(50% - 1px);
-        inset-block-start: 16%;
-        inline-size: 2px;
-        block-size: 26%;
-        border-radius: 1px;
-        background: var(--ink);
-      }
+    & svg {
+      inline-size: 210px;
+      overflow: visible;
     }
   }
 
-  .switch {
-    inline-size: 44px;
-    block-size: 24px;
-    border-radius: 12px;
-    background: var(--track);
+  .electrodes {
+    --charge: 0;
     position: relative;
-    cursor: pointer;
-    transition: background 120ms;
+    inline-size: 300px;
+    block-size: 100px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset-block-start: 6px;
+      inset-inline: 12px;
+      block-size: 40px;
+      border-radius: 20px;
+      background: radial-gradient(60% 50% at 50% 50%, #2a3440, var(--ink));
+      box-shadow: inset 0 3px 6px #000, 0 1px 0 #fff6;
+    }
 
     &::after {
       content: "";
       position: absolute;
-      inset-block: 3px;
-      inset-inline-start: 3px;
-      inline-size: 18px;
+      inset-block-start: 6px;
+      inset-inline: 12px;
+      block-size: 40px;
+      border-radius: 20px;
+      background: radial-gradient(50% 60% at 50% 50%, #bfe6ff66, transparent);
+      opacity: var(--charge);
+    }
+  }
+
+  .post {
+    position: absolute;
+    z-index: 1;
+    inset-block-start: 3px;
+    inline-size: 46px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 45% 40%, var(--bakelite-hi), var(--bakelite) 70%);
+    box-shadow: 0 3px 5px #0007, inset 0 1px 0 #fff3;
+    transition: filter 300ms;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 6px;
       border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #fff8e0, var(--brass-hi) 18%, var(--brass) 55%, #5e4317);
+      box-shadow: 0 2px 3px #0008;
+    }
+
+    &.left { inset-inline-start: 0; }
+    &.right { inset-inline-end: 0; }
+  }
+
+  .arcs {
+    position: absolute;
+    inset: 0;
+    inline-size: 300px;
+    block-size: 60px;
+    overflow: visible;
+    pointer-events: none;
+    opacity: var(--charge);
+  }
+
+  .electrodes.off .post { filter: saturate(0.5) brightness(0.8); }
+
+  .danger {
+    position: absolute;
+    inset-block-end: 2px;
+    inset-inline-start: 50%;
+    translate: -50% 0;
+    display: grid;
+    justify-items: center;
+    gap: 1px;
+    padding: 4px 14px 3px;
+    border-radius: 5px;
+    background: linear-gradient(#fbf7ec, var(--cream) 60%, var(--cream-lo));
+    box-shadow: inset 0 1px 0 #fff, 0 2px 0 #0003, 0 3px 6px #0004;
+
+    & .pill {
+      padding: 0 10px;
+      border: 1.5px solid var(--ink);
+      border-radius: 999px;
+      background: var(--red);
+      color: var(--cream);
+      font-size: 13px;
+      line-height: 1.15;
+      letter-spacing: 0.12em;
+    }
+
+    & .hv {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: var(--red);
+    }
+  }
+
+  .presets {
+    justify-self: center;
+    display: flex;
+    gap: 5px;
+    padding: 5px;
+    border-radius: 7px;
+    background: var(--ink);
+    box-shadow: inset 0 2px 4px #000, 0 1px 0 #fff5;
+
+    & button {
+      padding: 3px 7px 4px;
+      border-radius: 3px 3px 6px 6px;
+      background: linear-gradient(#fbf6e8, var(--cream-lo));
+      box-shadow: 0 3px 0 #9c8f6c, 0 4px 4px #0006;
+      font-size: 13px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: translate 60ms, box-shadow 60ms;
+
+      &:active, &[aria-pressed="true"] {
+        translate: 0 2px;
+        box-shadow: 0 1px 0 #9c8f6c, 0 1px 2px #0006;
+      }
+
+      &[aria-pressed="true"] {
+        background: linear-gradient(#fff4d6, #f1dca0);
+        color: var(--red);
+      }
+    }
+  }
+
+  .controls {
+    display: grid;
+    grid-template-columns: repeat(5, var(--cell)) 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .control {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    gap: 7px;
+  }
+
+  .name {
+    font-size: var(--label);
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .dial {
+    position: relative;
+    inline-size: var(--knob);
+    aspect-ratio: 1;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      box-shadow: 0 4px 6px #0008, 0 1px 1px #0009;
+    }
+  }
+
+  .tick {
+    position: absolute;
+    inset: -7px;
+    rotate: calc(var(--at) * 270deg - 135deg);
+    pointer-events: none;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset-inline-start: calc(50% - 1px);
+      inline-size: 2px;
+      block-size: 4px;
+      border-radius: 1px;
       background: var(--ink);
-      transition: translate 120ms;
+    }
+  }
+
+  .cap {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle, var(--bakelite) 0 60%, transparent 62%),
+      repeating-conic-gradient(var(--bakelite) 0 7deg, var(--bakelite-hi) 7deg 14deg);
+    rotate: calc(var(--turn) * 270deg - 135deg);
+    touch-action: none;
+    cursor: ns-resize;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset-inline-start: calc(50% - 1.5px);
+      inset-block-start: 10%;
+      inline-size: 3px;
+      block-size: 34%;
+      border-radius: 1.5px;
+      background: var(--cream);
     }
 
-    &[aria-checked="true"] {
-      background: var(--accent);
+    &:focus-visible { outline-offset: 5px; }
+  }
 
-      &::after { translate: 20px 0; }
+  .shine {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 28%, #fff4, transparent 45%);
+    pointer-events: none;
+  }
+
+  .readout {
+    position: absolute;
+    inset-block-end: calc(100% + 4px);
+    inset-inline-start: 50%;
+    translate: -50% 0;
+    padding: 1px 7px 2px;
+    border-radius: 3px;
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 120ms;
+  }
+
+  .control:hover .readout, .control:focus-within .readout, .control.dragging .readout { opacity: 1; }
+
+  .stomp {
+    grid-column: 6;
+    grid-row: 1 / span 2;
+    display: grid;
+    justify-items: center;
+    gap: 22px;
+  }
+
+  .lamp {
+    inline-size: 26px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, #8a3a2c, #4a120a 60%, #250604);
+    box-shadow: 0 0 0 3px var(--chrome), 0 0 0 4px #555, 0 3px 4px 4px #0004;
+    transition: background 200ms, box-shadow 200ms;
+
+    &.on {
+      background: radial-gradient(circle at 40% 35%, #ffd8c8, var(--lamp) 40%, #8a1206 85%);
+      box-shadow: 0 0 0 3px var(--chrome), 0 0 0 4px #555, 0 0 16px 6px #ff3b1f88;
     }
+  }
+
+  .footswitch {
+    inline-size: 58px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, #fff, var(--chrome) 30%, var(--chrome-lo) 70%, #4b5157);
+    box-shadow: 0 0 0 5px #9aa1a8, 0 0 0 7px #3a3d40, 0 6px 9px 6px #0006;
+    cursor: pointer;
+    transition: translate 60ms, box-shadow 60ms;
+
+    &:active {
+      translate: 0 2px;
+      box-shadow: 0 0 0 5px #9aa1a8, 0 0 0 7px #3a3d40, 0 3px 5px 6px #0006;
+    }
+  }
+
+  .serial {
+    grid-column: 5;
+    grid-row: 2;
+    display: grid;
+    justify-items: center;
+    padding: 4px 8px;
+    border-radius: 2px;
+    background: linear-gradient(135deg, #e9ecef, #aab1b8 45%, #eef1f3 55%, #9aa1a8);
+    box-shadow: 0 1px 2px #0005;
+    rotate: -4deg;
+    translate: 12px 14px;
+    font-size: 11px;
+    line-height: 1.1;
+    letter-spacing: 0.06em;
+
+    & small {
+      font-size: 8px;
+      letter-spacing: 0.2em;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lamp, .post { transition: none; }
   }
 </style>
 </head>
 <body>
-<nav class="presets" id="presets" aria-label="Presets"></nav>
-<main id="controls"></main>
-<p class="version" id="version"></p>
+<main class="pedal">
+  <header class="top">
+    <div class="badge">
+      <svg viewBox="-10 -4 266 64" role="img" aria-label="Shrieker">
+        <g transform="skewX(-14)" fill="#f4eee0">
+          <path d="M6 0H30V10H14L28 20L30 22V32L22 40H0V30H17L2 19L0 16V7Z"/>
+          <path transform="translate(34)" d="M0 0H10V15H20V0H30V40H20V25H10V40H0Z"/>
+          <path transform="translate(68)" fill-rule="evenodd" d="M0 0H24L30 6V18L25 23L30 40H19L15 25H10V40H0ZM10 9V16H20V9Z"/>
+          <path transform="translate(102)" d="M0 0H10V40H0Z"/>
+          <path transform="translate(116)" d="M0 0H26V9H10V15.5H22V24.5H10V31H26V40H0Z"/>
+          <path transform="translate(146)" d="M0 0H10V15L19 0H31L19 20L31 40H19L10 25V40H0Z"/>
+          <path transform="translate(181)" d="M0 0H26V9H10V15.5H22V24.5H10V31H26V40H0Z"/>
+          <path transform="translate(211)" fill-rule="evenodd" d="M0 0H24L30 6V18L25 23L30 40H19L15 25H10V40H0ZM10 9V16H20V9Z"/>
+        </g>
+        <path d="M-4 45H136L126 51H252L240 58H118L128 52H-9Z" fill="#c8261e"/>
+      </svg>
+    </div>
+    <div class="electrodes" id="electrodes">
+      <div class="post left"></div>
+      <div class="post right"></div>
+      <svg class="arcs" viewBox="0 0 300 60" aria-hidden="true">
+        <defs>
+          <filter id="blur" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="2.5"/></filter>
+        </defs>
+        <g id="arcs"></g>
+      </svg>
+      <div class="danger"><span class="pill">DANGER</span><span class="hv">HIGH VOLTAGE</span></div>
+    </div>
+  </header>
+  <nav class="presets" id="presets" aria-label="Presets"></nav>
+  <section class="controls">
+    <div data-slot="bloom"></div>
+    <div data-slot="pitch"></div>
+    <div data-slot="squabble"></div>
+    <div data-slot="chirp"></div>
+    <div data-slot="mess"></div>
+    <div data-slot="drive"></div>
+    <div data-slot="tone"></div>
+    <div data-slot="choke"></div>
+    <div data-slot="level"></div>
+    <div class="serial"><small>SER. NO.</small><span id="version"></span></div>
+    <div class="stomp"><span class="lamp" id="lamp"></span><div data-slot="stomp"></div></div>
+  </section>
+</main>
 
 <script>
 (() => {
   const params = new Map();
   const views = new Map();
   const dragging = new Set();
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
 
   const bridge = window.ipc
     ? (msg) => window.ipc.postMessage(JSON.stringify(msg))
@@ -199,6 +463,13 @@
     bridge({ type: "set", id, value: p.value });
     views.get(id)?.(p);
     showPreset();
+    art();
+  }
+
+  function gesture(id, fn) {
+    bridge({ type: "begin", id });
+    fn();
+    bridge({ type: "end", id });
   }
 
   // ---------- presets ----------
@@ -227,58 +498,55 @@
     });
   }
 
-  function gesture(id, fn) {
-    bridge({ type: "begin", id });
-    fn();
-    bridge({ type: "end", id });
-  }
-
   // ---------- controls ----------
-
-  function control(p, widget) {
-    const el = document.createElement("div");
-    el.className = "control";
-    const name = document.createElement("span");
-    name.className = "name";
-    name.textContent = p.name;
-    const text = document.createElement("span");
-    text.className = "text";
-    el.append(name, widget, text);
-    return { el, text };
-  }
 
   function buildKnob(p) {
     const id = p.id;
+    const el = document.createElement("div");
+    el.className = "control";
     const dial = document.createElement("div");
     dial.className = "dial";
-    const knob = document.createElement("div");
-    knob.className = "knob";
-    knob.tabIndex = 0;
-    knob.setAttribute("role", "slider");
-    knob.setAttribute("aria-label", p.name);
-    knob.setAttribute("aria-valuemin", "0");
-    knob.setAttribute("aria-valuemax", "1");
-    const pointer = document.createElement("div");
-    pointer.className = "pointer";
-    dial.append(knob, pointer);
-    const { el, text } = control(p, dial);
+    const stepped = p.steps > 0;
+    const ticks = stepped ? p.steps : 10;
+    for (let i = 0; i <= ticks; i++) {
+      const tick = document.createElement("span");
+      tick.className = "tick";
+      tick.style.setProperty("--at", (i / ticks).toFixed(4));
+      dial.append(tick);
+    }
+    const cap = document.createElement("div");
+    cap.className = "cap";
+    cap.tabIndex = 0;
+    cap.setAttribute("role", "slider");
+    cap.setAttribute("aria-label", p.name);
+    cap.setAttribute("aria-valuemin", "0");
+    cap.setAttribute("aria-valuemax", "1");
+    const shine = document.createElement("div");
+    shine.className = "shine";
+    const readout = document.createElement("span");
+    readout.className = "readout";
+    dial.append(cap, shine, readout);
+    const name = document.createElement("span");
+    name.className = "name";
+    name.textContent = p.name;
+    el.append(dial, name);
 
     views.set(id, (p) => {
-      dial.style.setProperty("--turn", p.value.toFixed(4));
-      knob.setAttribute("aria-valuenow", p.value.toFixed(4));
-      knob.setAttribute("aria-valuetext", p.text);
-      text.textContent = p.text;
+      cap.style.setProperty("--turn", p.value.toFixed(4));
+      cap.setAttribute("aria-valuenow", p.value.toFixed(4));
+      cap.setAttribute("aria-valuetext", p.text);
+      readout.textContent = p.text;
     });
 
-    const stepped = p.steps > 0;
     const snap = (v) => stepped ? Math.round(v * p.steps) / p.steps : v;
     const stepSize = stepped ? 1 / p.steps : 0.01;
 
-    knob.addEventListener("pointerdown", (e) => {
+    cap.addEventListener("pointerdown", (e) => {
       if (e.button !== 0) return;
-      knob.setPointerCapture(e.pointerId);
-      knob.focus();
+      cap.setPointerCapture(e.pointerId);
+      cap.focus();
       dragging.add(id);
+      el.classList.add("dragging");
       bridge({ type: "begin", id });
       let raw = p.value;
       let lastY = e.clientY;
@@ -290,20 +558,21 @@
         if (next !== p.value) setParam(id, next);
       };
       const up = () => {
-        knob.removeEventListener("pointermove", move);
-        knob.removeEventListener("pointerup", up);
-        knob.removeEventListener("pointercancel", up);
+        cap.removeEventListener("pointermove", move);
+        cap.removeEventListener("pointerup", up);
+        cap.removeEventListener("pointercancel", up);
         dragging.delete(id);
+        el.classList.remove("dragging");
         bridge({ type: "end", id });
       };
-      knob.addEventListener("pointermove", move);
-      knob.addEventListener("pointerup", up);
-      knob.addEventListener("pointercancel", up);
+      cap.addEventListener("pointermove", move);
+      cap.addEventListener("pointerup", up);
+      cap.addEventListener("pointercancel", up);
     });
 
-    knob.addEventListener("dblclick", () => gesture(id, () => setParam(id, p.default)));
+    cap.addEventListener("dblclick", () => gesture(id, () => setParam(id, p.default)));
 
-    knob.addEventListener("keydown", (e) => {
+    cap.addEventListener("keydown", (e) => {
       const dir = { ArrowUp: 1, ArrowRight: 1, ArrowDown: -1, ArrowLeft: -1 }[e.key];
       if (dir === undefined) return;
       e.preventDefault();
@@ -312,7 +581,7 @@
       gesture(id, () => setParam(id, snap(p.value + dir * amount)));
     });
 
-    knob.addEventListener("wheel", (e) => {
+    cap.addEventListener("wheel", (e) => {
       e.preventDefault();
       const dir = Math.sign(-e.deltaY);
       if (!dir) return;
@@ -322,29 +591,147 @@
     return el;
   }
 
-  function buildSwitch(p) {
+  function buildFootswitch(p) {
     const id = p.id;
     const button = document.createElement("button");
-    button.className = "switch";
+    button.className = "footswitch";
     button.setAttribute("role", "switch");
     button.setAttribute("aria-label", p.name);
-    const { el, text } = control(p, button);
+    const lamp = document.getElementById("lamp");
     views.set(id, (p) => {
-      button.setAttribute("aria-checked", String(p.value >= 0.5));
-      text.textContent = p.text;
+      const on = p.value >= 0.5;
+      button.setAttribute("aria-checked", String(on));
+      lamp.classList.toggle("on", on);
     });
     button.addEventListener("click", () => gesture(id, () => setParam(id, p.value >= 0.5 ? 0 : 1)));
-    return el;
+    return button;
   }
 
-  // Two-step parameters (bools and two-option enums) become switches,
-  // everything else a knob. Replace this with a hand-laid page once the
-  // plugin's controls settle.
   function build() {
-    const root = document.getElementById("controls");
-    root.replaceChildren(...[...params.values()].map((p) => p.steps === 1 ? buildSwitch(p) : buildKnob(p)));
+    for (const slot of document.querySelectorAll("[data-slot]")) {
+      const p = params.get(slot.dataset.slot);
+      if (!p) continue;
+      slot.replaceChildren(p.id === "stomp" ? buildFootswitch(p) : buildKnob(p));
+    }
     for (const p of params.values()) views.get(p.id)?.(p);
   }
+
+  // ---------- arc art ----------
+
+  // The spark's strength is the feedback's real output level, from the
+  // plugin's meter feed. Knobs shape it: Mess makes it jagged and forked,
+  // Squabble adds arcs, Chirp sets how fast it flickers.
+  const arcGroup = document.getElementById("arcs");
+  const electrodes = document.getElementById("electrodes");
+  const value = (id, fallback) => params.get(id)?.value ?? fallback;
+
+  function bolt(x1, y1, x2, y2, depth, amp) {
+    let pts = [[x1, y1], [x2, y2]];
+    for (let d = 0; d < depth; d++) {
+      const next = [pts[0]];
+      for (let i = 1; i < pts.length; i++) {
+        const [ax, ay] = pts[i - 1];
+        const [bx, by] = pts[i];
+        const len = Math.hypot(bx - ax, by - ay) || 1;
+        const off = (Math.random() * 2 - 1) * amp;
+        next.push([(ax + bx) / 2 - ((by - ay) / len) * off, (ay + by) / 2 + ((bx - ax) / len) * off], pts[i]);
+      }
+      pts = next;
+      amp *= 0.55;
+    }
+    return pts;
+  }
+
+  function polyline(pts, width, color, opacity, filter) {
+    const line = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
+    line.setAttribute("points", pts.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(" "));
+    line.setAttribute("fill", "none");
+    line.setAttribute("stroke", color);
+    line.setAttribute("stroke-width", width);
+    line.setAttribute("stroke-linejoin", "round");
+    line.setAttribute("stroke-linecap", "round");
+    line.setAttribute("opacity", opacity.toFixed(2));
+    if (filter) line.setAttribute("filter", filter);
+    return line;
+  }
+
+  function spark(pts, strength) {
+    return [
+      polyline(pts, 10 * strength, "#bfe6ff", 1, "url(#blur)"),
+      polyline(pts, 3.4 * strength, "#bfe6ff", 1),
+      polyline(pts, 1.6 * strength, "#ffffff", 1),
+    ];
+  }
+
+  function drawArcs() {
+    const mess = value("mess", 0.2);
+    const squabble = value("squabble", 0.25);
+    const depth = 3 + Math.round(mess * 2);
+    const amp = 3 + mess * 16;
+    const count = 1 + (squabble > 0.3) + (squabble > 0.7);
+    const nodes = [];
+    for (let a = 0; a < count; a++) {
+      const lift = a === 0 ? 0 : (a === 1 ? -9 : 9);
+      const main = bolt(40, 26 + lift * 0.6, 260, 26 - lift * 0.6, depth, amp + a * 4);
+      const strength = a === 0 ? 1 : 0.7;
+      nodes.push(...spark(main, strength));
+      const forks = Math.round(mess * 3 * strength);
+      for (let f = 0; f < forks; f++) {
+        const [sx, sy] = main[1 + Math.floor(Math.random() * (main.length - 2))];
+        const angle = (Math.random() * 2 - 1) * 1.1 + (Math.random() < 0.5 ? 0 : Math.PI);
+        const reach = 14 + Math.random() * 22;
+        const end = [sx + Math.cos(angle) * reach, sy + Math.sin(angle) * reach * 0.8];
+        nodes.push(...spark(bolt(sx, sy, end[0], end[1], 2, 5), 0.55));
+      }
+    }
+    arcGroup.replaceChildren(...nodes);
+    electrodes.classList.toggle("off", value("stomp", 1) < 0.5);
+  }
+
+  let charge = 0;
+  let chargeTarget = 0;
+  let chargeFrame = 0;
+  let chargeTime = 0;
+
+  function meter(level) {
+    const target = Math.min(1, Math.sqrt(level) * 1.4);
+    if (charge < 0.02 && target >= 0.02) art();
+    chargeTarget = target;
+    if (!chargeFrame) chargeFrame = requestAnimationFrame(glowStep);
+  }
+
+  function glowStep(now) {
+    const dt = chargeTime ? Math.min(0.1, (now - chargeTime) / 1000) : 0;
+    chargeTime = now;
+    charge = chargeTarget > charge ? chargeTarget : Math.max(chargeTarget, charge - dt * 4);
+    electrodes.style.setProperty("--charge", charge.toFixed(2));
+    if (charge === chargeTarget) {
+      chargeFrame = 0;
+      chargeTime = 0;
+      return;
+    }
+    chargeFrame = requestAnimationFrame(glowStep);
+  }
+
+  let flicker = 0;
+  let frame = 0;
+
+  function art() {
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(drawArcs);
+  }
+
+  function scheduleFlicker() {
+    clearTimeout(flicker);
+    if (reduceMotion.matches || !params.size) return;
+    const chirp = value("chirp", 0.25);
+    flicker = setTimeout(() => {
+      if (charge >= 0.02) drawArcs();
+      scheduleFlicker();
+    }, 900 - 850 * chirp);
+  }
+
+  reduceMotion.addEventListener("change", scheduleFlicker);
 
   // ---------- messages ----------
 
@@ -363,6 +750,7 @@
   window.onPluginMessage = (msg) => {
     switch (msg.type) {
       case "key": return forwardKey(msg);
+      case "meter": return meter(msg.level);
       case "init":
         document.getElementById("version").textContent = `v${msg.version}`;
         params.clear();
@@ -370,6 +758,8 @@
         presets = msg.presets ?? [];
         build();
         buildPresets();
+        art();
+        scheduleFlicker();
         return;
       case "values":
         for (const { id, value, text } of msg.values) {
@@ -380,6 +770,7 @@
           views.get(id)?.(p);
         }
         showPreset();
+        art();
         return;
     }
   };
@@ -405,6 +796,7 @@
           for (const p of specs.values()) values[p.id] ??= p.default;
           send({ type: "init", version, params: [...specs.values()].map(({ texts, ...rest }) => rest), presets: mock.presets });
           sendValues(specs, [...specs.keys()]);
+          send({ type: "meter", level: 0.4 });
           return;
         case "set":
           values[msg.id] = msg.value;

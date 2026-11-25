@@ -2,7 +2,7 @@
 
 Guitar feedback that blooms, chirps, squabbles and jumps harmonics.
 
-<img src="docs/shrieker.png" width="400" alt="Shrieker">
+<img src="docs/shrieker.png" width="592" alt="Shrieker: a safety-yellow pedal with a hazard-striped edge, a black oval Shrieker badge, a spark arcing between two brass electrodes above a small DANGER High Voltage plate, a row of cream preset keys, nine black knobs (Bloom, Pitch, Squabble, Chirp, Mess, Drive, Tone, Choke, Level), a red jewel lamp and a chrome footswitch.">
 
 A VST3 and CLAP plugin for macOS and Windows.
 
