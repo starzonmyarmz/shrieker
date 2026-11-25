@@ -13,7 +13,7 @@ use std::sync::Arc;
 
 static PAGE: editor::Page = editor::Page {
     title: "Shrieker",
-    size: (640, 460),
+    size: (680, 520),
     html: include_str!("../../ui/index.html"),
     version: match option_env!("PLUGIN_VERSION") {
         Some(version) => version,

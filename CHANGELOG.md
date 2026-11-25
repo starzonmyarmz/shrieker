@@ -4,6 +4,10 @@ What changed for people using Shrieker, newest first. Code-only work stays in th
 
 ## [Unreleased]
 
+### Fixed
+
+- The pedal casts a drop shadow in a slightly larger window, like the other plugins.
+
 ## [0.1.0] - 2026-11-25
 
 ### Added

@@ -30,6 +30,7 @@
     --knob: 52px;
     --cell: 84px;
     --label: 15px;
+    --margin: 20px;
   }
 
   * { box-sizing: border-box; }
@@ -44,7 +45,11 @@
   }
 
   body {
-    background: var(--ink);
+    display: grid;
+    justify-content: center;
+    align-content: start;
+    padding-block-start: var(--margin);
+    background: #0b0a09;
     color: var(--ink);
     font-family: "League Gothic", sans-serif;
   }
@@ -72,7 +77,11 @@
       radial-gradient(120% 90% at 30% 15%, var(--enamel-hi), var(--enamel) 55%, var(--enamel-lo)) padding-box,
       repeating-linear-gradient(-45deg, var(--ink) 0 var(--stripe), var(--enamel) var(--stripe) calc(var(--stripe) * 2)) border-box;
     background-size: 4px 4px, auto, auto;
-    box-shadow: inset 0 2px 0 #fff6, inset 0 -3px 8px #0005;
+    box-shadow:
+      inset 0 2px 0 #fff6,
+      inset 0 -3px 8px #0005,
+      0 30px 44px rgb(0 0 0 / 0.65),
+      0 6px 10px rgb(0 0 0 / 0.5);
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto auto 1fr;
