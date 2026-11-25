@@ -7,3 +7,4 @@ What changed for people using Shrieker, newest first. Code-only work stays in th
 ### Added
 
 - Feedback that follows the note you hold and swells in like a cranked amp, with knobs to pick the harmonic it screams on, make it chirp, squabble between pitches or fall apart, and choke it when you pick.
+- Eight presets above the knobs, from a clean Simple Howl to Mathcore Mess and Broken Cable. Loading one leaves the footswitch alone.

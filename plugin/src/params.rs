@@ -67,7 +67,13 @@ fn percent(name: &str, default: f64) -> FloatParam {
 
 impl Default for ShriekerParams {
     fn default() -> Self {
-        let s = Settings::default();
+        Self::new(Settings::default())
+    }
+}
+
+impl ShriekerParams {
+    /// Params whose defaults are `s`.
+    pub fn new(s: Settings) -> Self {
         Self {
             bloom: FloatParam::new(
                 "Bloom",
@@ -93,9 +99,7 @@ impl Default for ShriekerParams {
             stomp: BoolParam::new("Stomp", s.stomp),
         }
     }
-}
 
-impl ShriekerParams {
     pub fn settings(&self) -> Settings {
         Settings {
             bloom: self.bloom.value() as f64,

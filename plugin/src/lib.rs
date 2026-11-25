@@ -2,6 +2,7 @@ pub mod bridge;
 mod editor;
 pub mod engine;
 pub mod params;
+pub mod presets;
 
 use engine::Engine;
 use nice_plug::prelude::*;
@@ -10,7 +11,7 @@ use std::sync::Arc;
 
 static PAGE: editor::Page = editor::Page {
     title: "Shrieker",
-    size: (600, 340),
+    size: (600, 400),
     html: include_str!("../../ui/index.html"),
     version: match option_env!("PLUGIN_VERSION") {
         Some(version) => version,
@@ -53,7 +54,7 @@ impl Plugin for Shrieker {
     }
 
     fn editor(&mut self, _executor: AsyncExecutor<Self>) -> Option<Self::Editor> {
-        Some(editor::WebEditor::new(&PAGE, self.params.clone()))
+        Some(editor::WebEditor::new(&PAGE, self.params.clone()).with_presets(presets::json()))
     }
 
     fn activate(

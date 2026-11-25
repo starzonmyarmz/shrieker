@@ -27,6 +27,8 @@
   body {
     display: grid;
     place-items: center;
+    align-content: center;
+    gap: 16px;
     background: var(--bg);
     color: var(--ink);
     font-family: -apple-system, "Segoe UI", sans-serif;
@@ -53,6 +55,31 @@
     padding: 28px;
     border-radius: 16px;
     background: var(--panel);
+  }
+
+  .presets {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    max-inline-size: 560px;
+
+    & button {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+
+      &:hover { color: var(--ink); }
+
+      &[aria-pressed="true"] {
+        background: var(--accent);
+        color: var(--bg);
+      }
+    }
   }
 
   .version {
@@ -151,6 +178,7 @@
 </style>
 </head>
 <body>
+<nav class="presets" id="presets" aria-label="Presets"></nav>
 <main id="controls"></main>
 <p class="version" id="version"></p>
 
@@ -170,6 +198,33 @@
     p.value = Math.min(1, Math.max(0, value));
     bridge({ type: "set", id, value: p.value });
     views.get(id)?.(p);
+    showPreset();
+  }
+
+  // ---------- presets ----------
+
+  let presets = [];
+  const presetButtons = [];
+
+  function buildPresets() {
+    const buttons = presets.map((preset) => {
+      const button = document.createElement("button");
+      button.textContent = preset.name;
+      button.addEventListener("click", () => {
+        for (const [id, value] of Object.entries(preset.values)) gesture(id, () => setParam(id, value));
+      });
+      return button;
+    });
+    presetButtons.splice(0, Infinity, ...buttons);
+    document.getElementById("presets").replaceChildren(...buttons);
+    showPreset();
+  }
+
+  function showPreset() {
+    presets.forEach((preset, i) => {
+      const on = Object.entries(preset.values).every(([id, value]) => Math.abs((params.get(id)?.value ?? -1) - value) < 1e-3);
+      presetButtons[i]?.setAttribute("aria-pressed", String(on));
+    });
   }
 
   function gesture(id, fn) {
@@ -312,7 +367,9 @@
         document.getElementById("version").textContent = `v${msg.version}`;
         params.clear();
         msg.params.forEach((p) => params.set(p.id, { ...p, value: p.default, text: "" }));
+        presets = msg.presets ?? [];
         build();
+        buildPresets();
         return;
       case "values":
         for (const { id, value, text } of msg.values) {
@@ -322,6 +379,7 @@
           if (!dragging.has(id)) p.value = value;
           views.get(id)?.(p);
         }
+        showPreset();
         return;
     }
   };
@@ -332,7 +390,8 @@
   // from mock.json, which the tests write from the plugin's params.
   function mockBridge() {
     const version = new URLSearchParams(location.search).get("version") ?? "0.0.0";
-    const specs = fetch("mock.json").then((r) => r.json()).then((mock) => new Map(mock.params.map((p) => [p.id, p])));
+    const mock = fetch("mock.json").then((r) => r.json());
+    const specs = mock.then((mock) => new Map(mock.params.map((p) => [p.id, p])));
     const values = {};
     const send = (msg) => setTimeout(() => window.onPluginMessage(msg));
     const text = (p, n) => p.texts[Math.round(n * (p.texts.length - 1))];
@@ -340,11 +399,11 @@
       type: "values",
       values: ids.map((id) => ({ id, value: values[id], text: text(specs.get(id), values[id]) })),
     });
-    return (msg) => specs.then((specs) => {
+    return (msg) => Promise.all([specs, mock]).then(([specs, mock]) => {
       switch (msg.type) {
         case "ready":
           for (const p of specs.values()) values[p.id] ??= p.default;
-          send({ type: "init", version, params: [...specs.values()].map(({ texts, ...rest }) => rest) });
+          send({ type: "init", version, params: [...specs.values()].map(({ texts, ...rest }) => rest), presets: mock.presets });
           sendValues(specs, [...specs.keys()]);
           return;
         case "set":

@@ -9,8 +9,8 @@ const MOCK_STEPS: usize = 100;
 /// What `ui/mock.json` holds: the `init` message's parameters plus each
 /// one's formatted text at every step, so the page runs in a browser with
 /// the plugin's real parameters.
-pub fn mock(params: Arc<dyn Params>) -> Value {
-    let bridge = Bridge::new(params, "");
+pub fn mock(params: Arc<dyn Params>, presets: Value) -> Value {
+    let bridge = Bridge::new(params, "", presets);
     let params: Vec<Value> = bridge
         .describe()
         .into_iter()
@@ -23,7 +23,20 @@ pub fn mock(params: Arc<dyn Params>) -> Value {
             param
         })
         .collect();
-    json!({ "params": params })
+    json!({ "params": params, "presets": bridge.presets })
+}
+
+/// The `init` message's presets: each name with the normalized value of
+/// every parameter in `params` except those in `skip`. `params` holds the
+/// preset's values as its defaults.
+pub fn preset(name: &str, params: Arc<dyn Params>, skip: &[&str]) -> Value {
+    let values: serde_json::Map<String, Value> = params
+        .param_map()
+        .into_iter()
+        .filter(|(id, _, _)| !skip.contains(&id.as_str()))
+        .map(|(id, ptr, _)| (id, json!(unsafe { ptr.default_normalized_value() })))
+        .collect();
+    json!({ "name": name, "values": values })
 }
 
 /// Speaks the page's message protocol for any `#[derive(Params)]` struct:
@@ -33,15 +46,16 @@ pub struct Bridge {
     /// Keeps the params alive for the pointers below.
     _params: Arc<dyn Params>,
     version: &'static str,
+    presets: Value,
     entries: Vec<(String, ParamPtr)>,
     sent: Vec<f32>,
 }
 
 impl Bridge {
-    pub fn new(params: Arc<dyn Params>, version: &'static str) -> Self {
+    pub fn new(params: Arc<dyn Params>, version: &'static str, presets: Value) -> Self {
         let entries: Vec<_> = params.param_map().into_iter().map(|(id, ptr, _group)| (id, ptr)).collect();
         let sent = vec![f32::NAN; entries.len()];
-        Self { _params: params, version, entries, sent }
+        Self { _params: params, version, presets, entries, sent }
     }
 
     fn find(&self, msg: &Value) -> Option<ParamPtr> {
@@ -54,7 +68,7 @@ impl Bridge {
         match (msg["type"].as_str().unwrap_or_default(), ptr) {
             ("ready", _) => {
                 self.sent.fill(f32::NAN);
-                out.push(json!({ "type": "init", "version": self.version, "params": self.describe() }));
+                out.push(json!({ "type": "init", "version": self.version, "params": self.describe(), "presets": self.presets }));
             }
             ("begin", Some(ptr)) => unsafe { context.raw_begin_set_parameter(ptr) },
             ("set", Some(ptr)) => {

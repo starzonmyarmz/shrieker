@@ -40,6 +40,7 @@ pub struct WebEditor {
     page: &'static Page,
     params: Arc<dyn Params>,
     feed: Option<Feed>,
+    presets: Value,
     changed: Arc<AtomicBool>,
     scale_factor: Arc<AtomicU64>,
 }
@@ -50,6 +51,7 @@ impl WebEditor {
             page,
             params,
             feed: None,
+            presets: json!([]),
             changed: Arc::new(AtomicBool::new(true)),
             scale_factor: Arc::new(AtomicU64::new(1f64.to_bits())),
         }
@@ -58,6 +60,12 @@ impl WebEditor {
     #[allow(dead_code)]
     pub fn with_feed(mut self, feed: Feed) -> Self {
         self.feed = Some(feed);
+        self
+    }
+
+    /// Presets for the page, as `bridge::presets` builds them.
+    pub fn with_presets(mut self, presets: Value) -> Self {
+        self.presets = presets;
         self
     }
 }
@@ -101,6 +109,7 @@ impl Editor for WebEditor {
         let page = self.page;
         let params = self.params.clone();
         let feed = self.feed.clone();
+        let presets = self.presets.clone();
         let changed = self.changed.clone();
         changed.store(true, Ordering::Release);
         let settings = WindowSettings::new()
@@ -124,7 +133,7 @@ impl Editor for WebEditor {
                         webview: None,
                         tx: Some(tx),
                         inbox,
-                        bridge: Bridge::new(params, page.version),
+                        bridge: Bridge::new(params, page.version, presets),
                         feed,
                         ready: false,
                         page_has_focus: false,
