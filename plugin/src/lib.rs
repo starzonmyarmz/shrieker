@@ -10,7 +10,7 @@ use std::sync::Arc;
 
 static PAGE: editor::Page = editor::Page {
     title: "Shrieker",
-    size: (360, 220),
+    size: (600, 340),
     html: include_str!("../../ui/index.html"),
     version: match option_env!("PLUGIN_VERSION") {
         Some(version) => version,
@@ -90,7 +90,8 @@ impl Plugin for Shrieker {
 
 impl ClapPlugin for Shrieker {
     const CLAP_ID: &'static str = "com.iamdanielmarino.shrieker";
-    const CLAP_DESCRIPTION: Option<&'static str> = Some("Guitar feedback that blooms, chirps, squabbles and jumps harmonics.");
+    const CLAP_DESCRIPTION: Option<&'static str> =
+        Some("Guitar feedback that blooms, chirps, squabbles and jumps harmonics.");
     const CLAP_MANUAL_URL: Option<&'static str> = None;
     const CLAP_SUPPORT_URL: Option<&'static str> = None;
     const CLAP_FEATURES: &'static [ClapFeature] = &[ClapFeature::AudioEffect, ClapFeature::Stereo];
