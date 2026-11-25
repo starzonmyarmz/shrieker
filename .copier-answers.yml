@@ -1,0 +1,21 @@
+_commit: 0fa88a4
+_src_path: /Users/marino/Code/project-kit
+app_id: com.iamdanielmarino.shrieker
+author: Daniel Marino
+description: Guitar feedback that blooms, chirps, squabbles and jumps harmonics.
+design_doc: true
+display_name: Shrieker
+goldens: true
+name: shrieker
+oss_community: false
+owner: starzonmyarmz
+public: true
+screenshot: true
+ships:
+- github-release
+sponsors: true
+stack: vst-plugin
+starter: true
+voice_doc: false
+vst3_class_id: ShriekerDanielMa
+year: 2026
